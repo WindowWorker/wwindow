@@ -176,16 +176,14 @@ window.WindowWorkerNavigator = JSON.parse(window.WindowWorkerNavigator);
               return window.WindowWorkerNavigator;
             }
            
-            if (prop === "postMessage") {
-              return window.WindowWorkerPostMessage;
-            }
+
            return Reflect.get(...arguments);
          },
         };
 
       var self = new Proxy(window, loc);
       
-      
+              self.postMessage = window.WindowWorkerPostMessage;
       
       window.addEventListener("message", (event) => {
         //console.log(event);
